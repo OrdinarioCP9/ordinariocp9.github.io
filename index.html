@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupo de Inversiones</title>
+    <link rel="stylesheet" href="/mi-proyecto-react/src/index.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+
+        <div class="logo">
+          <span>Inversiones Ramirez </span><span class="logo-highlight">Group</span>
+        </div>
+    
+        <button class="menu-toggle" aria-label="Menú">
+          <span class="menu-line"></span>
+          <span class="menu-line"></span>
+          <span class="menu-line"></span>
+        </button>
+    
+        <nav class="nav">
+          <ul class="nav-list">
+            <li class="nav-item active">
+              <a href="#inicio" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z"/>
+                </svg>
+                Inicio
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#servicios" class="nav-link">
+                <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                  <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Servicios
+              </a>
+            </li>
+          </ul>
+        </nav>
+    
+        <div class="nav-actions">
+          <button class="btn-theme" id="themeToggle">
+            <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20">
+              <path class="sun" d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2v2H2zm18 0h2v2h-2zM11 2v2h2V2zm0 18v2h2v-2zm-8-8h2v2H3z"/>
+              <path class="moon" d="M12 3c.46 0 .93.04 1.38.14-1.62.61-2.88 2.18-2.88 4.07 0 2.35 1.73 4.29 4 4.64V13h4v4h-2.36c.35 2.43 2.29 4.36 4.64 4.36 1.89 0 3.46-1.26 4.07-2.88.1.45.14.92.14 1.38 0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/>
+            </svg>
+            <span class="theme-text">Modo Oscuro</span>
+          </button>
+        </div>
+      </div>
+    </header>
+  
+    <section class="hero" id="inicio">
+      <div class="container">
+        <h1>Invierte en tu Futuro con Nosotros</h1>
+        <p>Ofrecemos soluciones de inversión personalizadas para alcanzar tus metas financieras.</p>
+        <a href="#servicios" class="btn">Explora Nuestros Servicios</a>
+      </div>
+    </section>
+  
+    <section class="services" id="servicios">
+      <div class="container">
+        <h2>Nuestros Servicios de Inversión</h2>
+        <div class="service-cards">
+          <div class="card">
+            <div class="icon">🏠</div>
+            <h3>Inversión en Bienes Raíces</h3>
+            <p>Invierte en propiedades con alto potencial de crecimiento y asegura tu futuro financiero.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📈</div>
+            <h3>Fondos de Inversión</h3>
+            <p>Diversifica tu portafolio con nuestros fondos de inversión diseñados para maximizar tus ganancias.</p>
+          </div>
+          <div class="card">
+            <div class="icon">💼</div>
+            <h3>Asesoría Financiera</h3>
+            <p>Recibe asesoramiento personalizado de expertos para tomar decisiones financieras inteligentes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="about" id="acerca">
+      <div class="container">
+        <h2>Acerca de Nosotros</h2>
+        <p>Somos un grupo de inversión comprometido con ayudarte a alcanzar tus metas financieras. Nuestra misión es ofrecer soluciones personalizadas y transparentes.</p>
+        <img src="https://via.placeholder.com/800x400" alt="Equipo">
+      </div>
+    </section>
+  
+    <section class="testimonials" id="testimonios">
+      <div class="container">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div class="testimonial-cards">
+          <div class="testimonial-card">
+            <p>"El servicio fue excelente, superaron todas mis expectativas. ¡Altamente recomendado!"</p>
+            <div class="author">
+              <img src="https://via.placeholder.com/60" alt="Juan Pérez" class="author-img">
+              <div class="author-info">
+                <div class="author-name">Juan Pérez</div>
+                <div class="author-role">Inversionista</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>"Gracias a su asesoría, logré duplicar mis inversiones en menos de un año."</p>
+            <div class="author">
+              <img src="https://via.placeholder.com/60" alt="María López" class="author-img">
+              <div class="author-info">
+                <div class="author-name">María López</div>
+                <div class="author-role">Empresaria</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>"Un equipo profesional y confiable. Definitivamente trabajaré con ellos nuevamente."</p>
+            <div class="author">
+              <img src="https://via.placeholder.com/60" alt="Carlos García" class="author-img">
+              <div class="author-info">
+                <div class="author-name">Carlos García</div>
+                <div class="author-role">Emprendedor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <button type="submit" class="btn-submit">Enviar Mensaje</button>
+
+    <section class="contact" id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Escribe tu mensaje aquí" required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+  
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-logo">Inversiones Ramirez Group</div>
+        <div class="footer-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#acerca">Acerca de Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+          </a>
+        </div>
+        <div class="copyright">
+          &copy; 2025 Inversiones Ramirez Group. Todos los derechos reservados.
+        </div>
+      </div>
+    </footer>
+  
+    <script src="script.js"></script>
+  </body>
+  </html>
