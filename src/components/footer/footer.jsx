@@ -5,11 +5,10 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
-        <div className="footer-logo">Inversiones Ramirez Group</div>
         <div className="footer-links">
           <a href="#inicio">Inicio</a>
           <a href="#servicios">Servicios</a>
-          <a href="#acerca">Acerca de Nosotros</a>
+          <a href="#acerca">Acerca de</a>
           <a href="#contacto">Contacto</a>
         </div>
         <div className="social-icons">
@@ -24,7 +23,7 @@ const Footer = () => {
           </a>
         </div>
         <div className="copyright">
-          &copy; 2025 Inversiones Ramirez Group. Todos los derechos reservados.
+          &copy; {new Date().getFullYear()} Inversiones Ramirez Group. Todos los derechos reservados.
         </div>
       </div>
     </footer>
