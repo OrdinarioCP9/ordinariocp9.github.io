@@ -3,11 +3,25 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/OrdinarioCP9.github.io/', // Esto debe coincidir con el nombre de tu repositorio
+  base: '/OrdinarioCP9.github.io/',
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
   },
   server: {
     open: true
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   }
 });
+
+// La configuración actual es correcta para GitHub Pages
+// Asegúrate de ejecutar `npm run build` antes de desplegar
