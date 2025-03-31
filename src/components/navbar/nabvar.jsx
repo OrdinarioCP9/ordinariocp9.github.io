@@ -1,7 +1,13 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar = ({ isDarkMode, toggleDarkMode }) => {
+    const [activeLink, setActiveLink] = useState('inicio'); // Estado para el enlace activo
+
+    const handleLinkClick = (link) => {
+        setActiveLink(link); // Actualiza el enlace activo
+    };
+
     useEffect(() => {
         // Efecto de scroll
         const handleScroll = () => {
@@ -40,11 +46,25 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
         }
     };
 
+    const handleScrollToSection = (e, targetId) => {
+        e.preventDefault(); // Evita el comportamiento predeterminado del enlace
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth', // Desplazamiento suave
+                block: 'start', // Alinea la sección al inicio
+            });
+        }
+    };
+
     return (
         <header className="header">
             <div className="container">
                 <div className="logo">
-                    <span>Inversiones Ramirez </span><span className="logo-highlight">Group</span>
+                    <a href="/" className="logo">
+                        <span className="logo-text">Inversiones Ramírez</span>
+                        <span className="logo-highlight">Group</span>
+                    </a>
                 </div>
 
                 <button className="menu-toggle" aria-label="Menú" onClick={toggleMenu}>
@@ -55,43 +75,43 @@ const Navbar = ({ isDarkMode, toggleDarkMode }) => {
 
                 <nav className="nav">
                     <ul className="nav-list">
-                        <li className="nav-item active">
-                            <a href="#inicio" className="nav-link" onClick={handleNavLinkClick}>
-                                <svg className="nav-icon" viewBox="0 0 24 24">
-                                    <path d="M12 2L2 12h3v8h6v-6h2v6h6v-8h3L12 2z" />
-                                </svg>
+                        <li
+                            className={`nav-item ${activeLink === 'inicio' ? 'active' : ''}`}
+                            onClick={() => handleLinkClick('inicio')}
+                        >
+                            <a href="#inicio" className="nav-link" onClick={(e) => handleScrollToSection(e, '#inicio')}>
                                 Inicio
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a href="#servicios" className="nav-link" onClick={handleNavLinkClick}>
-                                <svg className="nav-icon" viewBox="0 0 24 24">
-                                    <path d="M12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                                </svg>
+                        <li
+                            className={`nav-item ${activeLink === 'servicios' ? 'active' : ''}`}
+                            onClick={() => handleLinkClick('servicios')}
+                        >
+                            <a href="#servicios" className="nav-link" onClick={(e) => handleScrollToSection(e, '#servicios')}>
                                 Servicios
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a href="#acerca" className="nav-link" onClick={handleNavLinkClick}>
-                                <svg className="nav-icon" viewBox="0 0 24 24">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" />
-                                </svg>
+                        <li
+                            className={`nav-item ${activeLink === 'acerca' ? 'active' : ''}`}
+                            onClick={() => handleLinkClick('acerca')}
+                        >
+                            <a href="#acerca" className="nav-link" onClick={(e) => handleScrollToSection(e, '#acerca')}>
                                 Acerca
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a href="#testimonios" className="nav-link" onClick={handleNavLinkClick}>
-                                <svg className="nav-icon" viewBox="0 0 24 24">
-                                    <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 9h-2V5h2v6zm0 4h-2v-2h2v2z" />
-                                </svg>
+                        <li
+                            className={`nav-item ${activeLink === 'testimonios' ? 'active' : ''}`}
+                            onClick={() => handleLinkClick('testimonios')}
+                        >
+                            <a href="#testimonios" className="nav-link" onClick={(e) => handleScrollToSection(e, '#testimonios')}>
                                 Testimonios
                             </a>
                         </li>
-                        <li className="nav-item">
-                            <a href="#contacto" className="nav-link" onClick={handleNavLinkClick}>
-                                <svg className="nav-icon" viewBox="0 0 24 24">
-                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                                </svg>
+                        <li
+                            className={`nav-item ${activeLink === 'contacto' ? 'active' : ''}`}
+                            onClick={() => handleLinkClick('contacto')}
+                        >
+                            <a href="#contacto" className="nav-link" onClick={(e) => handleScrollToSection(e, '#contacto')}>
                                 Contacto
                             </a>
                         </li>

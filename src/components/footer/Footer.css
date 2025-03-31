@@ -1,123 +1,172 @@
 /* ===== FOOTER OSCURO TRANSLÚCIDO ===== */
 .footer {
-    background: rgba(26, 32, 44, 0.8);
-    /* Fondo oscuro translúcido */
-    backdrop-filter: blur(8px);
-    /* Efecto de desenfoque */
-    color: #f7fafc;
-    /* Texto claro */
-    padding: 1.5rem 1rem; /* Reducido el padding vertical aún más */
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
+  background: rgba(0, 0, 0, 0.9); /* Fondo oscuro translúcido */
+  color: var(--light); /* Texto blanco */
+  padding: 4rem 2rem; /* Espaciado interno */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 2px;
-    background: #4a90e2;
-    /* Separador de color */
-    opacity: 0.5;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: var(--accent); /* Separador dorado */
+  opacity: 0.5;
 }
 
 .footer .footer-content {
-    display: flex;
-    flex-direction: column; /* Cambiado a column para alinear elementos verticalmente */
-    flex-wrap: wrap;
-    justify-content: center; /* Centrar todo verticalmente */
-    align-items: center; /* Centrar todo horizontalmente */
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .footer .footer-logo {
-    font-size: 1.5rem; /* Tamaño reducido */
-    font-weight: 700;
-    color: #ffffff;
-    /* Texto blanco */
-    text-transform: uppercase;
-    letter-spacing: 1px; /* Reducido */
-    margin-bottom: 0; /* Eliminado margen inferior */
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent); /* Texto dorado */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para destacar */
 }
 
 .footer .footer-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 auto; /* Asegura el centrado horizontal */
-    width: 100%; /* Toma el ancho completo para centrar */
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .footer .footer-links a {
-    color: rgba(255, 255, 255, 0.8);
-    /* Enlaces blancos translúcidos */
-    text-decoration: none;
-    font-size: 0.9rem; /* Tamaño reducido */
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
+  color: rgba(255, 255, 255, 0.8); /* Enlaces blancos translúcidos */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer .footer-links a:hover {
-    color: #4a90e2;
-    /* Cambiar a color de acento al pasar el mouse */
-    transform: translateY(-2px);
-    /* Efecto de elevación */
+  color: var(--accent); /* Cambiar a color de acento al pasar el mouse */
+  transform: translateY(-2px); /* Efecto de elevación */
 }
 
 .footer .social-icons {
-    display: flex;
-    gap: 1rem; /* Gap reducido */
-    justify-content: center;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
 .footer .social-icons a {
-    color: rgba(255, 255, 255, 0.8);
-    /* Íconos blancos translúcidos */
-    font-size: 1.5rem; /* Tamaño reducido */
-    transition: color 0.3s ease, transform 0.3s ease;
+  color: rgba(255, 255, 255, 0.8); /* Íconos blancos translúcidos */
+  font-size: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer .social-icons a:hover {
-    color: #4a90e2;
-    /* Cambiar a color de acento al pasar el mouse */
-    transform: scale(1.2);
-    /* Efecto de zoom */
+  color: var(--accent); /* Cambiar a color de acento al pasar el mouse */
+  transform: scale(1.2); /* Efecto de zoom */
+}
+
+.footer .newsletter {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.footer .newsletter input[type="email"] {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--light);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.footer .newsletter input[type="email"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.footer .newsletter button {
+  padding: 0.8rem 1.5rem;
+  margin-left: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--accent);
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer .newsletter button:hover {
+  background: #e6c200; /* Dorado más oscuro */
+  transform: translateY(-2px);
 }
 
 .footer .copyright {
-    font-size: 0.8rem; /* Tamaño reducido */
-    color: rgba(255, 255, 255, 0.6);
-    /* Texto gris claro translúcido */
-    margin-top: 0.5rem; /* Espacio superior reducido */
-    width: 100%; /* Ancho completo para que aparezca debajo */
-    text-align: center; /* Centrado */
-    opacity: 0.8;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6); /* Texto gris claro translúcido */
+  margin-top: 2rem;
+  opacity: 0.8;
 }
 
+/* Botón general */
+.btn {
+  background: var(--accent); /* Fondo dorado */
+  color: var(--light); /* Texto blanco */
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3); /* Sombra dorada */
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: #e6c200; /* Dorado más oscuro al pasar el mouse */
+  transform: translateY(-2px);
+}
+
+/* Responsividad */
 @media (max-width: 768px) {
-    .footer .footer-content {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-    
-    .footer .footer-links {
-        flex-direction: row; /* Mantiene la dirección horizontal */
-        gap: 0.8rem;
-        justify-content: center;
-    }
+  .footer .footer-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .footer .footer-links {
+    flex-direction: row; /* Mantiene la dirección horizontal */
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .footer .newsletter input[type="email"] {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .footer .newsletter button {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 480px) {
-    .footer .footer-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+  .footer .footer-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .footer .social-icons {
+    gap: 1rem;
+  }
 }

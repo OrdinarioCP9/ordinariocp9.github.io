@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './Home.css';
 import Navbar from '../navbar/nabvar';
 import Footer from '../footer/footer';
+import ContactForm from '../ContactForm/ContactForm';
 
 const Home = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -75,10 +76,22 @@ const Home = () => {
             </section>
 
             <section className="about" id="acerca">
-                <div className="container">
-                    <h2>Acerca de Nosotros</h2>
-                    <p>Somos un grupo de inversión comprometido con ayudarte a alcanzar tus metas financieras. Nuestra misión es ofrecer soluciones personalizadas y transparentes.</p>
-                    <img src="https://via.placeholder.com/800x400" alt="Equipo" />
+                <div className="container about-container">
+                    <div className="about-image">
+                        <img src="https://via.placeholder.com/800x400" alt="Equipo" />
+                    </div>
+                    <div className="about-content">
+                        <h2>Acerca de Nosotros</h2>
+                        <p>
+                            Somos un grupo de inversión comprometido con ayudarte a alcanzar tus metas financieras. 
+                            Nuestra misión es ofrecer soluciones personalizadas y transparentes para garantizar tu éxito.
+                        </p>
+                        <p>
+                            Con años de experiencia en el mercado, nuestro equipo de expertos trabaja contigo para 
+                            diseñar estrategias que se adapten a tus necesidades y objetivos.
+                        </p>
+                        <a href="#contacto" className="btn">Contáctanos</a>
+                    </div>
                 </div>
             </section>
 
@@ -87,32 +100,44 @@ const Home = () => {
                     <h2>Lo que dicen nuestros clientes</h2>
                     <div className="testimonial-cards">
                         <div className="testimonial-card">
-                            <p>"El servicio fue excelente, superaron todas mis expectativas. ¡Altamente recomendado!"</p>
+                            <p>"El servicio fue excelente, superó todas mis expectativas. ¡Altamente recomendado!"</p>
                             <div className="author">
-                                <img src="https://via.placeholder.com/60" alt="Juan Pérez" className="author-img" />
+                                <img
+                                    src="https://via.placeholder.com/60"
+                                    alt="Cliente 1"
+                                    className="author-img"
+                                />
                                 <div className="author-info">
-                                    <div className="author-name">Juan Pérez</div>
-                                    <div className="author-role">Inversionista</div>
+                                    <span className="author-name">Juan Pérez</span>
+                                    <span className="author-role">Empresario</span>
                                 </div>
                             </div>
                         </div>
                         <div className="testimonial-card">
-                            <p>"Gracias a su asesoría, logré duplicar mis inversiones en menos de un año."</p>
+                            <p>"Gracias a su asesoría, logré alcanzar mis metas financieras en tiempo récord."</p>
                             <div className="author">
-                                <img src="https://via.placeholder.com/60" alt="María López" className="author-img" />
+                                <img
+                                    src="https://via.placeholder.com/60"
+                                    alt="Cliente 2"
+                                    className="author-img"
+                                />
                                 <div className="author-info">
-                                    <div className="author-name">María López</div>
-                                    <div className="author-role">Empresaria</div>
+                                    <span className="author-name">María López</span>
+                                    <span className="author-role">Inversionista</span>
                                 </div>
                             </div>
                         </div>
                         <div className="testimonial-card">
-                            <p>"Un equipo profesional y confiable. Definitivamente trabajaré con ellos nuevamente."</p>
+                            <p>"Un equipo profesional y dedicado. Definitivamente volveré a trabajar con ellos."</p>
                             <div className="author">
-                                <img src="https://via.placeholder.com/60" alt="Carlos García" className="author-img" />
+                                <img
+                                    src="https://via.placeholder.com/60"
+                                    alt="Cliente 3"
+                                    className="author-img"
+                                />
                                 <div className="author-info">
-                                    <div className="author-name">Carlos García</div>
-                                    <div className="author-role">Emprendedor</div>
+                                    <span className="author-name">Carlos García</span>
+                                    <span className="author-role">Freelancer</span>
                                 </div>
                             </div>
                         </div>
@@ -121,24 +146,7 @@ const Home = () => {
             </section>
 
             <section className="contact" id="contacto">
-                <div className="container">
-                    <h2>Contacto</h2>
-                    <form id="contactForm" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="name">Nombre</label>
-                            <input type="text" id="name" name="name" placeholder="Ingresa tu nombre" required />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="message">Mensaje</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Escribe tu mensaje aquí" required></textarea>
-                        </div>
-                        <button type="submit" className="btn-submit">Enviar Mensaje</button>
-                    </form>
-                </div>
+                <ContactForm />
             </section>
 
             <Footer />

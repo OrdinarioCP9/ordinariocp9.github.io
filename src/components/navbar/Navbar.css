@@ -1,23 +1,31 @@
+/* Eliminar márgenes y padding globales */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* ===== HEADER OSCURO TRANSLÚCIDO ===== */
+/* Ajuste del header */
 .header {
-    background: rgba(26, 32, 44, 0.95);
-    /* Fondo más oscuro y menos translúcido */
+    display: flex;
+    justify-content: space-between; /* Espaciado entre logo y enlaces */
+    align-items: center; /* Centrar verticalmente */
+    padding: 1.5rem 2rem; /* Aumentamos el padding superior e inferior */
+    background: rgba(0, 0, 0, 0.959); /* Fondo negro translúcido */
+    color: var(--light); /* Texto blanco */
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
+    border-bottom: 1px solid rgba(78, 78, 78, 0.315);
+    box-shadow: 0 4px 20px rgba(97, 97, 97, 0.1);
+    /* Elimina la propiedad position: fixed */
+    position: relative; /* Cambia a relative para que no sea fijo */
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease;
-    color: #ffffff;
-    height: 70px;
-}
-
-.header.scrolled {
-    background: rgba(26, 32, 44, 0.98);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    height: 80px; /* Aumentamos la altura del navbar */
+    overflow: hidden; /* Evitar que los elementos se salgan del contenedor */
+    margin: 0; /* Eliminar cualquier margen del header */
+    box-sizing: border-box; /* Incluir padding y bordes en el ancho total */
 }
 
 .header .container {
@@ -31,19 +39,32 @@
     height: 100%;
 }
 
+/* Ajuste del logo */
 .logo {
-    font-size: 1.5rem;
-    /* Reducido para mejor visualización */
+    font-size: 1.5rem; /* Tamaño del texto del logo */
     font-weight: 800;
-    color: #ffffff;
-    /* Cambiado a blanco para mejor contraste */
+    text-transform: uppercase;
     display: flex;
-    gap: 0.25rem;
+    align-items: center; /* Centrar verticalmente el contenido del logo */
+    gap: 1.25rem;
     text-decoration: none;
+    white-space: nowrap; /* Evitar que el texto del logo se divida en varias líneas */
+    max-width: 100%; /* Asegurarse de que no exceda el ancho del contenedor */
+    overflow: hidden; /* Ocultar cualquier contenido que se desborde */
+    text-overflow: ellipsis; /* Agregar puntos suspensivos si el texto es demasiado largo */
+    line-height: 1; /* Ajustar la altura de línea para evitar desbordes */
+}
+
+.logo .logo-text {
+    color: var(--light); /* Blanco */
+}
+
+.logo .logo-highlight {
+    color: #e6c200; /* Dorado más realista */
 }
 
 .logo-highlight {
-    color: #4a90e2;
+    color: #e6c200;
     position: relative;
 }
 
@@ -54,7 +75,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: #4a90e2;
+    background: #ffffff;
     transform: scaleX(0);
     transition: transform 0.3s ease;
 }
@@ -92,11 +113,10 @@
 
 .nav-list {
     display: flex;
-    gap: 1rem;
-    /* Reducido para mejor espaciado */
+    gap: 1.5rem; /* Espaciado entre los enlaces */
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
     height: 100%;
     align-items: center;
 }
@@ -111,15 +131,13 @@
 .nav-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 500;
-    padding: 0.5rem 0.75rem;
-    /* Reducido para mejor visualización */
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
+    justify-content: center;
+    padding: 0.5rem 0.75rem; /* Ajusta el padding según sea necesario */
+    position: relative; /* Necesario para que el pseudo-elemento ::after funcione */
     text-decoration: none;
-    height: 100%;
+    color: var(--light); /* Blanco */
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .nav-icon {
@@ -131,8 +149,8 @@
 }
 
 .nav-link:hover {
+    color: var(--accent); /* Dorado al pasar el mouse */
     background: rgba(255, 255, 255, 0.1);
-    color: #4a90e2;
 }
 
 .nav-link:hover .nav-icon {
@@ -140,26 +158,26 @@
 }
 
 .nav-item.active .nav-link {
-    color: #4a90e2;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .nav-item.active::after {
     content: '';
     position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: #4a90e2;
-    border-radius: 50%;
-    animation: pulse 1.5s infinite;
+    bottom: 0; /* Asegúrate de que el punto esté justo debajo del enlace */
+    left: 50%; /* Centra el punto horizontalmente */
+    transform: translateX(-50%); /* Ajusta la posición para centrarlo */
+    width: 6px; /* Tamaño del punto */
+    height: 6px; /* Tamaño del punto */
+    background: var(--accent); /* Color dorado */
+    border-radius: 50%; /* Hace que el punto sea redondo */
+    animation: pulse 1.5s infinite; /* Animación opcional */
 }
 
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+        box-shadow: 0 0 0 0 rgba(246, 227, 59, 0.4);
     }
 
     70% {
@@ -230,7 +248,7 @@
         width: 80%;
         max-width: 300px;
         height: calc(100vh - 70px);
-        background: rgba(26, 32, 44, 0.95);
+        background: rgba(44, 44, 26, 0.95);
         backdrop-filter: blur(10px);
         padding: 1.5rem;
         transition: all 0.3s ease;
