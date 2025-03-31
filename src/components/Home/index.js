@@ -1,2 +1,2 @@
 import './Home.css';
-export { default } from '/Home';
+export { default } from './Home';
