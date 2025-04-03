@@ -11,44 +11,58 @@ const distDir = path.join(rootDir, 'dist');
 // Función para verificar la construcción
 async function verifyBuild() {
   try {
-    console.log('🔍 Verificando archivos de la construcción...');
+    console.log('\n🔍 VERIFICACIÓN DE BUILD');
+    console.log('========================\n');
 
-    // Verificar que los archivos principales existen
-    const files = await fs.readdir(distDir);
-    console.log('📁 Archivos en carpeta dist:', files);
+    // Verificar que existe la carpeta dist
+    if (!fs.existsSync(distDir)) {
+      console.error('❌ ERROR: La carpeta dist no existe. Ejecuta npm run build primero.');
+      process.exit(1);
+    }
 
     // Verificar index.html
-    if (fs.existsSync(path.join(distDir, 'index.html'))) {
+    const indexPath = path.join(distDir, 'index.html');
+    if (fs.existsSync(indexPath)) {
       console.log('✅ index.html existe');
       
       // Leer contenido para verificar scripts
-      const indexContent = await fs.readFile(path.join(distDir, 'index.html'), 'utf8');
-      console.log('📄 Contenido de index.html:');
-      console.log(indexContent);
+      const indexContent = await fs.readFile(indexPath, 'utf8');
       
-      if (indexContent.includes('type="module"')) {
-        console.log('✅ index.html contiene scripts de tipo module');
+      if (indexContent.includes('<script')) {
+        console.log('✅ index.html contiene scripts');
+        console.log('\nExtracto de los scripts encontrados:');
+        
+        // Extraer y mostrar líneas de script
+        const scriptLines = indexContent
+          .split('\n')
+          .filter(line => line.includes('<script'))
+          .map(line => '   ' + line.trim());
+          
+        console.log(scriptLines.join('\n'));
       } else {
-        console.warn('⚠️ Advertencia: index.html no contiene scripts de tipo module');
+        console.error('❌ ERROR: No se encontraron scripts en index.html');
+        console.error('   La aplicación no funcionará correctamente en producción.');
+        process.exit(1);
       }
     } else {
-      console.error('❌ index.html no existe!');
+      console.error('❌ ERROR: index.html no existe en la carpeta dist.');
+      process.exit(1);
     }
 
-    // Verificar archivos JS
-    const assets = await fs.readdir(path.join(distDir, 'assets'));
-    console.log('📁 Archivos en carpeta assets:', assets);
-    
-    const jsFiles = assets.filter(file => file.endsWith('.js'));
-    if (jsFiles.length > 0) {
-      console.log('✅ Archivos JS generados:', jsFiles);
-    } else {
-      console.error('❌ No se encontraron archivos JS en assets!');
+    // Verificar archivos auxiliares
+    const files = ['404.html', '.nojekyll', '_redirects'];
+    for (const file of files) {
+      if (fs.existsSync(path.join(distDir, file))) {
+        console.log(`✅ ${file} existe`);
+      } else {
+        console.warn(`⚠️ Advertencia: ${file} no existe`);
+      }
     }
 
-    console.log('✅ Verificación completada');
+    console.log('\n✅ VERIFICACIÓN COMPLETADA EXITOSAMENTE');
+    console.log('La compilación parece correcta y debería funcionar en producción.');
   } catch (err) {
-    console.error('❌ Error durante la verificación:', err);
+    console.error('\n❌ ERROR durante la verificación:', err);
     process.exit(1);
   }
 }
