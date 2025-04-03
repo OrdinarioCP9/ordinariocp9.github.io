@@ -9,9 +9,9 @@ export default defineConfig({
   base: base, // Base dinámica
   build: {
     outDir: 'dist',
+    // Asegurarse de que los scripts se generen como .js y no .jsx
     rollupOptions: {
       output: {
-        manualChunks: undefined,
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]'
@@ -23,8 +23,14 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
+  },
+  // Configurar tipos MIME correctamente
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+        '.ts': 'tsx'
+      }
+    }
   }
 });
-
-// La configuración actual es correcta para GitHub Pages
-// Asegúrate de ejecutar `npm run build` antes de desplegar
