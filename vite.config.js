@@ -1,9 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+// Determina la base URL según el entorno
+const base = process.env.GITHUB_ACTIONS ? '/OrdinarioCP9.github.io/' : '/';
+
 export default defineConfig({
   plugins: [react()],
-  base: '/OrdinarioCP9.github.io/',
+  base: base, // Base dinámica
   build: {
     outDir: 'dist',
     rollupOptions: {
