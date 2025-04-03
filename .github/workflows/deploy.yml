@@ -5,7 +5,6 @@ on:
     branches:
       - main
 
-# Establece permiso para los tokens GitHub OIDC
 permissions:
   contents: write
 
@@ -22,17 +21,25 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install dependencies
+      - name: Clean install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build (with explicit base path)
+        run: |
+          npm run build
         env:
-          GITHUB_ACTIONS: true
+          BASE_URL: "/OrdinarioCP9.github.io/"
+
+      - name: Create essential files
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+          echo "/* /index.html 200" > dist/_redirects
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
-          token: ${{ secrets.GITHUB_TOKEN }}
+          clean: true  # Asegura una compilación limpia
+          single-commit: true  # Mantén el historial limpio

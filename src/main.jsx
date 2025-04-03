@@ -1,30 +1,17 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
-import App from './App.jsx';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
 
-// Log para debugging detallado
-console.log('Entorno: ', import.meta.env.MODE);
-console.log('Base URL: ', import.meta.env.BASE_URL);
-console.log('Verificando inicialización de la aplicación...');
+// Verificar que el elemento root existe
+const rootElement = document.getElementById('root');
 
-// Función para garantizar carga completa
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM completamente cargado');
-  
-  const rootElement = document.getElementById('root');
-
-  if (!rootElement) {
-    console.error('No se pudo encontrar el elemento root');
-  } else {
-    console.log('Elemento root encontrado, inicializando React');
-    
-    createRoot(rootElement).render(
-      <StrictMode>
-        <App />
-      </StrictMode>
-    );
-    
-    console.log('React inicializado correctamente');
-  }
-});
+if (!rootElement) {
+  console.error('Error: No se encontró el elemento con id "root"');
+} else {
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  )
+}

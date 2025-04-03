@@ -1,51 +1,63 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 import fs from 'fs-extra';
-import path from 'path';
 
-// Determina la base URL según el entorno
-const base = process.env.GITHUB_ACTIONS ? '/OrdinarioCP9.github.io/' : '/';
+// Determina la base URL
+const base = '/OrdinarioCP9.github.io/';
 
 export default defineConfig({
   plugins: [
     react(),
-    // Plugin personalizado para copiar el index.html al 404.html durante la construcción
+    // Copia 404.html y crea .nojekyll después de la compilación
     {
-      name: 'copy-index-html',
+      name: 'post-build',
       closeBundle: async () => {
-        const indexPath = path.resolve(__dirname, 'dist/index.html');
-        const notFoundPath = path.resolve(__dirname, 'dist/404.html');
-        const noJekyllPath = path.resolve(__dirname, 'dist/.nojekyll');
+        const distDir = resolve(__dirname, 'dist');
         
         // Copiar index.html a 404.html
-        if (fs.existsSync(indexPath)) {
-          await fs.copy(indexPath, notFoundPath);
-          console.log('✅ 404.html creado automáticamente');
-        }
+        await fs.copy(
+          resolve(distDir, 'index.html'),
+          resolve(distDir, '404.html')
+        );
+        console.log('✅ 404.html creado correctamente');
         
         // Crear archivo .nojekyll
-        await fs.writeFile(noJekyllPath, '');
-        console.log('✅ .nojekyll creado automáticamente');
+        await fs.writeFile(resolve(distDir, '.nojekyll'), '');
+        console.log('✅ .nojekyll creado correctamente');
+        
+        // Crear _redirects para Netlify
+        await fs.writeFile(resolve(distDir, '_redirects'), '/* /index.html 200');
+        console.log('✅ _redirects creado correctamente');
+        
+        // Verificar que hay scripts en index.html
+        const indexHtmlContent = await fs.readFile(resolve(distDir, 'index.html'), 'utf8');
+        if (!indexHtmlContent.includes('<script')) {
+          console.error('⚠️ ADVERTENCIA: No se encontraron tags <script> en index.html');
+        } else {
+          console.log('✅ Scripts inyectados correctamente en index.html');
+        }
       }
     }
   ],
   base: base,
   build: {
     outDir: 'dist',
-    // Esta configuración es crucial para resolver el problema MIME
+    assetsDir: 'assets',
+    minify: 'terser',
+    sourcemap: false,
+    emptyOutDir: true,
     rollupOptions: {
-      output: {
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
-      },
-      // Importante: asegurarte que está configurado correctamente para módulos
       input: {
-        main: path.resolve(__dirname, 'index.html')
+        main: resolve(__dirname, 'index.html')
+      },
+      output: {
+        manualChunks: undefined
       }
     }
   },
   server: {
+    port: 3000,
     open: true
   },
   resolve: {

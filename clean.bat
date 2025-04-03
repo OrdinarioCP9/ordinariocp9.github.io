@@ -1,0 +1,16 @@
+@echo off
+echo Limpiando proyecto...
+
+echo Eliminando node_modules...
+if exist node_modules rmdir /s /q node_modules
+
+echo Eliminando dist...
+if exist dist rmdir /s /q dist
+
+echo Limpiando cache de npm...
+call npm cache clean --force
+
+echo Reinstalando dependencias...
+call npm install
+
+echo Limpieza completada con éxito!
