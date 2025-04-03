@@ -8,9 +8,7 @@ export default defineConfig({
     react(),
     {
       name: 'copy-html-and-create-files',
-      // Usar esta opción para que se ejecute al final del proceso de construcción
       enforce: 'post',
-      // Usar closeBundle en lugar de buildEnd para garantizar que todos los archivos estén escritos
       async closeBundle() {
         const distDir = resolve(__dirname, 'dist');
         
@@ -35,12 +33,20 @@ export default defineConfig({
       }
     }
   ],
-  base: '/OrdinarioCP9.github.io/',
+  // Corregido: base path con el nombre exacto del repositorio (minúsculas)
+  base: '/',
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    minify: 'esbuild', // Cambiado a esbuild para mayor confiabilidad
-    // Eliminamos configuraciones complicadas
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        // Asegurar que los archivos JSX se procesen correctamente
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
+    }
   },
   server: {
     port: 3000,
@@ -49,6 +55,5 @@ export default defineConfig({
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  // Importante para debug
   logLevel: 'info'
 });

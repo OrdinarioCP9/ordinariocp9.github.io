@@ -24,22 +24,24 @@ jobs:
       - name: Clean install dependencies
         run: npm ci
 
-      - name: Build (with explicit base path)
+      - name: Build (con base path corregido)
         run: |
           npm run build
         env:
-          BASE_URL: "/OrdinarioCP9.github.io/"
+          BASE_URL: "/"
 
       - name: Create essential files
         run: |
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
           echo "/* /index.html 200" > dist/_redirects
+          # Verificar que los archivos se crearon correctamente
+          ls -la dist/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           branch: gh-pages
-          clean: true  # Asegura una compilación limpia
-          single-commit: true  # Mantén el historial limpio
+          clean: true
+          single-commit: true
